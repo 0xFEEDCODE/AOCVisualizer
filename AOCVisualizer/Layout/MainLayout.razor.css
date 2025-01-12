@@ -1,119 +1,15 @@
-.page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: #0f0f23; /*337 x 5*/
-    color: #cccccc;
-    font-family: "Source Code Pro", monospace;
-    font-weight: 300;
-    font-size: 14pt;
-    min-width: 60em;
-}
-
 p {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
     unicode-bidi: isolate;
 }
-
-h1, h2 {
-    font-size: 1em;
-    font-weight: normal;
-}
-
-a {
-    outline: 0;
-    text-decoration: none;
-    color: #009900;
-}
-
-a:hover, a:focus {
-    color: #99ff99;
-}
-
-nav {
-    unicode-bidi: isolate;
-}
-
-header {
-    margin: 8px;
-    white-space: nowrap;
-    cursor: default;
-    z-index: 100;
-}
-
-header h1 {
-    display: inline-block;
-    margin: 0;
-    padding-right: 1em;
-}
-
-header h1 a, header h1 span {
-    display: inline-block;
-    text-decoration: none;
-    color: #00cc00;
-    text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
-}
-
-header h1 a:hover, header h1 a:focus {
-    color: #99ff99;
-    text-shadow: 0 0 2px #99ff99, 0 0 5px #99ff99;
-}
-
-header .sub-title{
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-}
-
-header h1.sub-title .sub-title-wrap {
-    opacity: .33;
-    white-space: pre;
-}
-
-header .sub-title img{
-    vertical-align: middle;
-    width: 32px;
-    height: 32px;
-    align-items: center;
-    align-self: center;
-    white-space: pre;
-}
-
-header nav {
-    display: inline-block;
-}
-
-header nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-}
-
-header nav li {
-    display: inline-block;
-    padding: 0 .6em;
-}
-
-header nav a {
-    display: inline-block;
-    text-decoration: none;
-    outline: none;
-}
-
 
 main {
-    flex: 1;
-    display: block;
+    overflow: auto;
+    width: 50%;
+    justify-self: center;
 }
 

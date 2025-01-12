@@ -16,4 +16,10 @@
       <_ContentIncludedByDefault Remove="Layout\MainLayout.razor" />
       <_ContentIncludedByDefault Remove="Pages\Home.razor" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="Pages\Pathfinding.razor.css">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </Content>
+    </ItemGroup>
 </Project>
