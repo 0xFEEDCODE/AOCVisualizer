@@ -245,7 +245,7 @@ header .sub-title {
 }
 
 header h1.sub-title .sub-title-wrap {
-    opacity: .85;
+    opacity: .95;
     color: #FFEB3B;
     white-space: pre;
 }
