@@ -1,6 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCVisualizer", "AOCVisualizer\AOCVisualizer.csproj", "{D8140816-16B6-4958-9E14-6F3BF76B5811}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{47F29AD3-B628-4631-9006-6A0B907A5DA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCVisualizerUI", "AOCVisualizerUI\AOCVisualizerUI.csproj", "{2B4F57DD-2F79-406B-8CE5-A70130C9339E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCVisualizerUI.Host", "AOCVisualizerUI.Host\AOCVisualizerUI.Host.csproj", "{D4407414-CF33-4E29-BCFE-242369766D24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +14,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8140816-16B6-4958-9E14-6F3BF76B5811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8140816-16B6-4958-9E14-6F3BF76B5811}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8140816-16B6-4958-9E14-6F3BF76B5811}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8140816-16B6-4958-9E14-6F3BF76B5811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47F29AD3-B628-4631-9006-6A0B907A5DA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F29AD3-B628-4631-9006-6A0B907A5DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F29AD3-B628-4631-9006-6A0B907A5DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F29AD3-B628-4631-9006-6A0B907A5DA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B4F57DD-2F79-406B-8CE5-A70130C9339E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B4F57DD-2F79-406B-8CE5-A70130C9339E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B4F57DD-2F79-406B-8CE5-A70130C9339E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B4F57DD-2F79-406B-8CE5-A70130C9339E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4407414-CF33-4E29-BCFE-242369766D24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4407414-CF33-4E29-BCFE-242369766D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4407414-CF33-4E29-BCFE-242369766D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4407414-CF33-4E29-BCFE-242369766D24}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4407414-CF33-4E29-BCFE-242369766D24} = {C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}
+		{2B4F57DD-2F79-406B-8CE5-A70130C9339E} = {C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}
 	EndGlobalSection
 EndGlobal
