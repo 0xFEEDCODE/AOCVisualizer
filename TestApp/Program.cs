@@ -22,25 +22,26 @@ public class Program
                 Enumerable.Range(0, 1 + rand.Next(10)).Select(_ => 'a').ToArray()).ToArray();
 
 
-            // get random row
-            int getRandR()
+            await grid.Visualize(new PathData
             {
-                var rand = new Random();
-                return rand.Next(0, grid.Length);
-            }
+                StartPoint = new Point2D(GetRandC(), GetRandR()),
+                EndPoint = new Point2D(GetRandC(), GetRandR())
+            });
+            continue;
 
             //get random col
-            int getRandC()
+            int GetRandC()
             {
                 var rand = new Random();
                 return rand.Next(0, grid[0].Length);
             }
 
-            await grid.Visualize(new PathData
+            // get random row
+            int GetRandR()
             {
-                StartPoint = new Point2D(getRandC(), getRandR()),
-                EndPoint = new Point2D(getRandC(), getRandR())
-            });
+                var rand = new Random();
+                return rand.Next(0, grid.Length);
+            }
         }
 
         ExitEvent.WaitOne();
