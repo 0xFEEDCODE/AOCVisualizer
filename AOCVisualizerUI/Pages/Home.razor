@@ -57,7 +57,7 @@
     private int height;
     private double gridScale = 1;
 
-    record struct Point2D(int X, int Y);
+    GridWithPathData? input;
 
     private class Cell
     {
@@ -74,10 +74,19 @@
             var row = new List<Cell>();
             for (var x = 0; x < width; x++)
             {
-                var p = new Point2D(x, y);
-                const string cellClass = "cell";
+                var cellClasses = "cell";
 
-                row.Add(new Cell { X = x, Y = y, Class = cellClass });
+                var p = new Point2D(x, y);
+                if (input?.PathData.StartPoint == p)
+                {
+                    cellClasses += " cell-start";
+                }
+                else if (input?.PathData.EndPoint == p)
+                {
+                    cellClasses += " cell-end";
+                }
+
+                row.Add(new Cell { X = x, Y = y, Class = cellClasses });
             }
 
             grid.Add(row);
@@ -106,9 +115,10 @@
         {
             var encodedMsg = $"{user}: {message}";
 
-            var gridData = JsonConvert.DeserializeObject<GridData>(message);
-            width = gridData.Width;
-            height = gridData.Height;
+            var gridWithPathData = JsonConvert.DeserializeObject<GridWithPathData>(message);
+            width = gridWithPathData.GridData.Width;
+            height = gridWithPathData.GridData.Height;
+            input = gridWithPathData;
 
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
@@ -121,6 +131,11 @@
         catch
         {
         }
+
+        /*
+        width = 24;
+        height = 24;
+    */
     }
 
     public async ValueTask DisposeAsync()

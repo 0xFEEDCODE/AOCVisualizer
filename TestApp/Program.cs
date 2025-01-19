@@ -1,4 +1,5 @@
-﻿using AOCVisualizerUI.Host;
+﻿using Abstractions;
+using AOCVisualizerUI.Host;
 
 public class Program
 {
@@ -20,7 +21,26 @@ public class Program
             var grid = Enumerable.Range(0, 1 + rand.Next(10)).Select(_ =>
                 Enumerable.Range(0, 1 + rand.Next(10)).Select(_ => 'a').ToArray()).ToArray();
 
-            await grid.Visualize();
+
+            // get random row
+            int getRandR()
+            {
+                var rand = new Random();
+                return rand.Next(0, grid.Length);
+            }
+
+            //get random col
+            int getRandC()
+            {
+                var rand = new Random();
+                return rand.Next(0, grid[0].Length);
+            }
+
+            await grid.Visualize(new PathData
+            {
+                StartPoint = new Point2D(getRandC(), getRandR()),
+                EndPoint = new Point2D(getRandC(), getRandR())
+            });
         }
 
         ExitEvent.WaitOne();

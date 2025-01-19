@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCVisualizerUI.Host", "AOC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "Abstractions\Abstractions.csproj", "{6B2789AC-C6A9-48CA-970C-2AD02F412738}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Abstractions", "Common.Abstractions\Common.Abstractions.csproj", "{6B2789AC-C6A9-48CA-970C-2AD02F412738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +36,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D4407414-CF33-4E29-BCFE-242369766D24} = {C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}
 		{2B4F57DD-2F79-406B-8CE5-A70130C9339E} = {C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}
-		{6B2789AC-C6A9-48CA-970C-2AD02F412738} = {C532FF67-A209-45BA-8B56-8BC1A3D2ECF9}
 	EndGlobalSection
 EndGlobal
