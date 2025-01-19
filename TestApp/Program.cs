@@ -14,8 +14,12 @@ public class Program
 
         while (true)
         {
+            var rand = new Random();
             await Task.Delay(1000);
-            var grid = Array.Empty<char[]>();
+
+            var grid = Enumerable.Range(0, 1 + rand.Next(10)).Select(_ =>
+                Enumerable.Range(0, 1 + rand.Next(10)).Select(_ => 'a').ToArray()).ToArray();
+
             await grid.Visualize();
         }
 

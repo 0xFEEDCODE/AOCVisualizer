@@ -2,39 +2,99 @@
 
 @page "/chat"
 @inject NavigationManager Navigation
+@using Abstractions
 @using Microsoft.AspNetCore.SignalR.Client
+@using Newtonsoft.Json
 @implements IAsyncDisposable
 
-<PageTitle>Chat</PageTitle>
+<PageTitle>AOCVisualizer</PageTitle>
 
-<div class="form-group">
-    <label>
-        User:
-        <input @bind="userInput"/>
-    </label>
+<br>
+<button @onclick="ShowModal">Messages</button>
+<br>
+
+@if (isModalVisible)
+{
+    <div id="modal" class="modal" @onclick="CloseModal">
+        <div class="modal-content" @onclick:stopPropagation>
+            <button class="close" @onclick="CloseModal">X</button>
+
+            <ul id="messagesList">
+                @foreach (var message in messages)
+                {
+                    <li>@message</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+<label>Scale: </label> <input type="range" min="0.5" max="2" step="0.1" @bind="gridScale"/>
+<br>
+
+<label>Steps: </label> <input type="range" min="0.1" max="100"/>
+<br>
+
+<div class="grid-container" style="width: @(width * 32 * gridScale)px; height: @(height * 32 * gridScale)px;">
+    <div class="grid" style="grid-template-columns: repeat(@width, @(32 * gridScale)px); grid-template-rows: repeat(@height, @(32 * gridScale)px);">
+        @foreach (var cell in GenerateGrid().SelectMany(row => row))
+        {
+            <div class="@cell.Class" style="width: @(32 * gridScale)px; height: @(32 * gridScale)px;"></div>
+        }
+    </div>
 </div>
-<div class="form-group">
-    <label>
-        Message:
-        <input @bind="messageInput" size="50"/>
-    </label>
-</div>
-<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
 
-<hr>
+@code
+{
+    private bool isModalVisible;
 
-<ul id="messagesList">
-    @foreach (var message in messages)
-    {
-        <li>@message</li>
-    }
-</ul>
-
-@code {
     private HubConnection? hubConnection;
     private readonly List<string> messages = [];
     private string? userInput;
     private string? messageInput;
+
+    private int width;
+    private int height;
+    private double gridScale = 1;
+
+    record struct Point2D(int X, int Y);
+
+    private class Cell
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Class { get; init; }
+    }
+
+    private List<List<Cell>> GenerateGrid()
+    {
+        var grid = new List<List<Cell>>();
+        for (var y = 0; y < height; y++)
+        {
+            var row = new List<Cell>();
+            for (var x = 0; x < width; x++)
+            {
+                var p = new Point2D(x, y);
+                const string cellClass = "cell";
+
+                row.Add(new Cell { X = x, Y = y, Class = cellClass });
+            }
+
+            grid.Add(row);
+        }
+
+        return grid;
+    }
+
+    private void ShowModal()
+    {
+        isModalVisible = true;
+    }
+
+    private void CloseModal()
+    {
+        isModalVisible = false;
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -45,23 +105,23 @@
         hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
         {
             var encodedMsg = $"{user}: {message}";
+
+            var gridData = JsonConvert.DeserializeObject<GridData>(message);
+            width = gridData.Width;
+            height = gridData.Height;
+
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
         });
 
-        await hubConnection.StartAsync();
-    }
-
-    private async Task Send()
-    {
-        if (hubConnection is not null)
+        try
         {
-            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+            await hubConnection.StartAsync();
+        }
+        catch
+        {
         }
     }
-
-    public bool IsConnected =>
-        hubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync()
     {
@@ -70,5 +130,4 @@
             await hubConnection.DisposeAsync();
         }
     }
-
 }
