@@ -7,7 +7,7 @@ public static class Interaction
 {
     public static async Task Visualize(this char[][] grid, PathData pathData)
     {
-        var vcontroller = Program.hostBuilder.Services.GetRequiredService<VisualizerController>();
+        var vcontroller = Host.Instance!.Services.GetRequiredService<VisualizerController>();
 
         var height = grid.Length;
         var width = grid[0].Length;
